@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="history_button_name">История</string>
+    <string name="quiz_start">НАЧАТЬ ВИКТОРИНУ</string>
+    <string name="quiz_greetings_title">Добро пожаловать\n в DailyQuiz!</string>
+</resources>
