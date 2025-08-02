@@ -2,51 +2,124 @@ package com.serelik.surfdailyquiz.ui.feature.StartScreen
 
 
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.ime
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.ShapeDefaults
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.serelik.common.QuizSnackBarVisuals
+import com.serelik.quizstartscreen.LoaderView
+import com.serelik.quizstartscreen.QuizStartViewModel
+import com.serelik.quizstartscreen.QuizState
 import com.serelik.quizstartscreen.R
-import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
+import com.serelik.surfdailyquiz.ui.theme.disabledColor
+import kotlinx.coroutines.launch
 
 @Composable
-fun StartScreen(
+fun StartScreen (
   //  onHistoryClick:()->  Unit,
-   // onStartClick:() -> Unit
 ) {
-    Column(Modifier
-        .background(MaterialTheme.colorScheme.background),
-        horizontalAlignment = Alignment.CenterHorizontally
+
+    val viewModel: QuizStartViewModel = hiltViewModel()
+
+    val quizState = viewModel.quizStateFlow.collectAsState()
+
+    val scaffoldState = remember { SnackbarHostState() }
+    val scope = rememberCoroutineScope()
+
+    val showSnackBar: (Boolean) -> Unit = { isFavorite ->
+
+        scope.launch {
+            scaffoldState.showSnackbar(
+                QuizSnackBarVisuals(
+                    message = "Ошибка! Попробуйте ещё раз",
+                )
+            )
+        }
+    }
+
+    Scaffold(
+        contentWindowInsets = WindowInsets.ime,
+        modifier = Modifier.fillMaxSize(),
+        snackbarHost = {
+            SnackbarHost(scaffoldState) { data ->
+                Snackbar(
+                    snackbarData = data,
+                    containerColor = disabledColor,
+                    shape = RoundedCornerShape(12.dp),
+                    modifier = Modifier.padding(horizontal = 20.dp)
+                )
+            }
+        }
+    ) { padding ->
+        Modifier.padding(padding)
+
+        Column(
+            Modifier
+                .background(MaterialTheme.colorScheme.background)
+                .fillMaxHeight(),
+            horizontalAlignment = Alignment.CenterHorizontally
 
         ) {
-        Button(
 
-            onClick = {},
-            modifier = Modifier,
+            when (quizState.value) {
+                QuizState.NotStarted -> StartScreenUi(viewModel::onStartQuizClick)
+                QuizState.Error -> {
+                    StartScreenUi(viewModel::onStartQuizClick)
+                    Log.d("checcc", "in error")
+                    showSnackBar}
+                is QuizState.Result -> {}
+                QuizState.Loading -> LoaderView()
+            }
+
+        }
+
+    }
+}
+
+    @Composable
+    fun StartScreenUi( onStartClick:() -> Unit) {
+
+        Button(
+            onClick = {
+
+            },
+            modifier = Modifier.padding(top = 52.dp),
             enabled = true,
             contentPadding = PaddingValues(12.dp),
-            shape = ShapeDefaults.Large,
+            shape = ShapeDefaults.ExtraLarge,
 
             ) {
             Row {
@@ -71,50 +144,47 @@ fun StartScreen(
             contentDescription = "history Icon",
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 48.dp),
+                .padding(horizontal = 48.dp)
+                .padding(top = 120.dp),
             tint = MaterialTheme.colorScheme.primary
         )
 
         Column(
-            modifier = Modifier.background(
-                color = Color.White,
-                shape = ShapeDefaults.ExtraLarge
-            ),
+            modifier = Modifier
+                .padding(top = 32.dp)
+                .background(
+                    color = Color.White,
+                    shape = ShapeDefaults.ExtraLarge
+                ),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
                 text = stringResource(R.string.quiz_greetings_title),
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(horizontal = 24.dp)
-                    .padding(top = 24.dp, bottom = 40.dp)
-,
+                    .padding(top = 24.dp, bottom = 40.dp),
                 style = MaterialTheme.typography.titleLarge
             )
 
-        Button(
-            onClick = {},
-            shape = ShapeDefaults.Medium,
-            colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                contentColor = MaterialTheme.colorScheme.primary,
-                disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                disabledContentColor = MaterialTheme.colorScheme.primary
-            ),
-            modifier = Modifier
-                .padding(bottom = 24.dp)
-                .requiredSize(width = 260.dp, height = 50.dp)
+            Button(
+                onClick = {
+                    onStartClick
+                },
+                shape = ShapeDefaults.Medium,
+                colors = ButtonColors(
+                    containerColor = MaterialTheme.colorScheme.background,
+                    contentColor = MaterialTheme.colorScheme.primary,
+                    disabledContainerColor = MaterialTheme.colorScheme.tertiary,
+                    disabledContentColor = MaterialTheme.colorScheme.primary
+                ),
+                modifier = Modifier
+                    .padding(bottom = 24.dp)
+                    .requiredSize(width = 260.dp, height = 50.dp)
 
-        ) {
-            Text(text = stringResource(R.string.quiz_start))
-        }
+            ) {
+                Text(text = stringResource(R.string.quiz_start))
+            }
 
         }
     }
-}
-@Composable
-@Preview
-fun StartScreenPreview() {
-    SurfDailyQuizTheme {
-        StartScreen()
-    }
-}
+

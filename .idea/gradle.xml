@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/data/network" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/common" />
             <option value="$PROJECT_DIR$/ui/core" />
             <option value="$PROJECT_DIR$/ui/feature" />
             <option value="$PROJECT_DIR$/ui/feature/quizstartscreen" />

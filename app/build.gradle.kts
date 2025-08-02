@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.kotlinAndroidKsp)
+    alias(libs.plugins.hiltAndroid)
 }
 
 android {
@@ -44,6 +46,7 @@ dependencies {
     implementation(project(":data:network"))
     implementation(project(":domain"))
     implementation(project(":ui:core"))
+    implementation(project(":ui:common"))
 
 
     implementation(libs.androidx.core.ktx)
@@ -61,6 +64,11 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.hilt.android)
+    implementation(libs.navigation.hilt)
+    ksp(libs.hilt.compiler)
 
 
 }

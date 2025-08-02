@@ -1,6 +1,7 @@
-package com.serelik.surfdailyquiz.network
+package com.serelik.surfdailyquiz.network.di
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.serelik.surfdailyquiz.network.QuizApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -23,6 +23,6 @@ rootProject.name = "SurfDailyQuiz"
 include(":app")
 include(":domain")
 include(":data:network")
-include(":ui:core")
 include(":ui:feature:quizstartscreen")
+include(":ui:common")
 include(":ui:core")
