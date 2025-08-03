@@ -19,6 +19,7 @@
             <option value="$PROJECT_DIR$/ui/common" />
             <option value="$PROJECT_DIR$/ui/core" />
             <option value="$PROJECT_DIR$/ui/feature" />
+            <option value="$PROJECT_DIR$/ui/feature/history" />
             <option value="$PROJECT_DIR$/ui/feature/quizstartscreen" />
           </set>
         </option>
