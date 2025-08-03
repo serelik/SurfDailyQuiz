@@ -3,4 +3,6 @@
     <string name="history_button_name">История</string>
     <string name="quiz_start">НАЧАТЬ ВИКТОРИНУ</string>
     <string name="quiz_greetings_title">Добро пожаловать\n в DailyQuiz!</string>
+    <string name="question_number">Вопрос %1$d из 5</string>
+    <string name="forward">Далее</string>
 </resources>

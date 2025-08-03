@@ -14,3 +14,7 @@ val White = Color(0xFFFFFFFF)
 val Purple = Color(0xFF2B0063)
 val BackGroundColor = Color(0xFF7067FF)
 val disabledColor = Color(0xFFBABABA)
+
+val answerBackgroundColor = Color(0xFFF3F3F3)
+
+val pink = Color(0xFFBCB7FF)

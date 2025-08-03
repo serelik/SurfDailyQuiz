@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -57,11 +56,16 @@ fun StartScreen(
                 Toast.makeText(context, "Ошибка! Попробуйте ещё раз", Toast.LENGTH_SHORT).show()
             }
 
-            is QuizState.Result -> {
-
+            is QuizState.Quiz -> {
+                QuizScreen(
+                    (quizState.value as QuizState.Quiz).question,
+                    onNextClick = viewModel::nextClick,
+                    onSelectClick = viewModel::selectAnswer
+                )
             }
 
             QuizState.Loading -> LoaderView()
+            is QuizState.QuizFinishUiModel -> {}
         }
 
     }
@@ -80,8 +84,7 @@ fun StartScreenUi(onStartClick: () -> Unit) {
         shape = ShapeDefaults.ExtraLarge,
 
         ) {
-        Row {
-        }
+
         Text(
             text = stringResource(R.string.history_button_name),
             color = MaterialTheme.colorScheme.background

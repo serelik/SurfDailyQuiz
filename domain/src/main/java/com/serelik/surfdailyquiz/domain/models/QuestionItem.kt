@@ -8,4 +8,7 @@ data class QuestionItem(
     val type: String,
     val category: String,
     val difficulty: String,
-)
+) {
+    val answers: List<String> = (listOf<String>(correctAnswer) + incorrectAnswers).shuffled()
+
+}
