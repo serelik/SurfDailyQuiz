@@ -21,3 +21,9 @@ dependencyResolutionManagement {
 
 rootProject.name = "SurfDailyQuiz"
 include(":app")
+include(":domain")
+include(":data:network")
+include(":ui:feature:quizstartscreen")
+include(":ui:core")
+include(":data:database")
+include(":ui:feature:history")
