@@ -19,7 +19,7 @@ fun LoaderView() {
         contentAlignment = Alignment.Center,
     ) {
         CircularProgressIndicator(
-            color = MaterialTheme.colorScheme.background,
+            color = MaterialTheme.colorScheme.primary,
         )
     }
 }

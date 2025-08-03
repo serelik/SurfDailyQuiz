@@ -3,6 +3,7 @@ package com.serelik.surfdailyquiz.ui.feature.StartScreen
 
 
 import android.util.Log
+import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -34,6 +35,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -54,37 +56,13 @@ fun StartScreen (
 
     val viewModel: QuizStartViewModel = hiltViewModel()
 
+    val context = LocalContext.current
+
     val quizState = viewModel.quizStateFlow.collectAsState()
 
     val scaffoldState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
 
-    val showSnackBar: (Boolean) -> Unit = { isFavorite ->
-
-        scope.launch {
-            scaffoldState.showSnackbar(
-                QuizSnackBarVisuals(
-                    message = "Ошибка! Попробуйте ещё раз",
-                )
-            )
-        }
-    }
-
-    Scaffold(
-        contentWindowInsets = WindowInsets.ime,
-        modifier = Modifier.fillMaxSize(),
-        snackbarHost = {
-            SnackbarHost(scaffoldState) { data ->
-                Snackbar(
-                    snackbarData = data,
-                    containerColor = disabledColor,
-                    shape = RoundedCornerShape(12.dp),
-                    modifier = Modifier.padding(horizontal = 20.dp)
-                )
-            }
-        }
-    ) { padding ->
-        Modifier.padding(padding)
 
         Column(
             Modifier
@@ -98,20 +76,21 @@ fun StartScreen (
                 QuizState.NotStarted -> StartScreenUi(viewModel::onStartQuizClick)
                 QuizState.Error -> {
                     StartScreenUi(viewModel::onStartQuizClick)
-                    Log.d("checcc", "in error")
-                    showSnackBar}
-                is QuizState.Result -> {}
+                    Toast.makeText(context, "Ошибка! Попробуйте ещё раз", Toast.LENGTH_SHORT).show()
+                }
+                is QuizState.Result -> {
+                    (quizState.value as QuizState.Result).questionList.forEach {   Log.d("checker", it.toString()) }
+
+                }
                 QuizState.Loading -> LoaderView()
             }
 
         }
 
     }
-}
 
     @Composable
     fun StartScreenUi( onStartClick:() -> Unit) {
-
         Button(
             onClick = {
 
@@ -168,8 +147,8 @@ fun StartScreen (
 
             Button(
                 onClick = {
-                    onStartClick
-                },
+                    onStartClick.invoke()}
+                ,
                 shape = ShapeDefaults.Medium,
                 colors = ButtonColors(
                     containerColor = MaterialTheme.colorScheme.background,

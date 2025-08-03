@@ -1,9 +1,11 @@
 package com.serelik.quizstartscreen
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serelik.surfdailyquiz.domain.repository.QuizRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -20,8 +22,7 @@ class QuizStartViewModel @Inject constructor(
         viewModelScope.launch {
             _quizStateFlow.emit(QuizState.Loading)
             try {
-               // _quizStateFlow.emit(QuizState.Result(repository.getQuiz()))
-                throw IllegalArgumentException()
+                _quizStateFlow.emit(QuizState.Result(repository.getQuiz()))
             } catch (_: Exception) {
                 _quizStateFlow.emit(QuizState.Error)
             }
