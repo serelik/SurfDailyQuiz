@@ -6,11 +6,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
@@ -41,13 +46,18 @@ fun StartScreen(
 
     val quizState = viewModel.quizStateFlow.collectAsState()
 
+    val insets = WindowInsets.systemBars.asPaddingValues()
+
     Column(
         Modifier
             .background(MaterialTheme.colorScheme.background)
-            .fillMaxHeight(),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxHeight()
+            .padding(insets)
+            .verticalScroll(rememberScrollState()),
 
-    ) {
+        horizontalAlignment = Alignment.CenterHorizontally,
+
+        ) {
 
         when (quizState.value) {
             QuizState.NotStarted -> StartScreenUi(viewModel::onStartQuizClick)
@@ -65,7 +75,10 @@ fun StartScreen(
             }
 
             QuizState.Loading -> LoaderView()
-            is QuizState.QuizFinishUiModel -> {}
+            is QuizState.QuizFinishUiModel -> QuizFinishedScreen(
+                finishUiModel = quizState.value as QuizState.QuizFinishUiModel,
+                viewModel::onNewQuizClick
+            )
         }
 
     }

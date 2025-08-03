@@ -5,4 +5,20 @@
     <string name="quiz_greetings_title">Добро пожаловать\n в DailyQuiz!</string>
     <string name="question_number">Вопрос %1$d из 5</string>
     <string name="forward">Далее</string>
+    <string name="summary">Результаты</string>
+    <string name="correct_from_all">%1$d из %2$d</string>
+    <string name="start_again">Начать заново</string>
+    <string name="summary_message_0">0/5— не отчаивайтесь. Начните заново и удивите себя!</string>
+    <string name="summary_message_1">1/5— иногда просто не ваш день. Следующая попытка будет лучше!</string>
+    <string name="summary_message_2">2/5 — не расстраивайтесь, попробуйте ещё раз!</string>
+    <string name="summary_message_3">3/5 — вы на верном пути. Продолжайте тренироваться!</string>
+    <string name="summary_message_4">4/5 — очень близко к совершенству. Ещё один шаг!</string>
+    <string name="summary_message_5">5/5 — вы ответили на всё правильно. Это блестящий результат!</string>
+    <string name="summary_Title_0">Бывает и так!</string>
+    <string name="summary_Title_1">Сложный вопрос?</string>
+    <string name="summary_Title_2">Есть над чем поработать</string>
+    <string name="summary_Title_3">Хороший результат!</string>
+    <string name="summary_Title_4">Почти идеально!</string>
+    <string name="summary_Title_5">Идеально!</string>
+    <string name="warning_message">Вернуться к предыдущим вопросам нельзя</string>
 </resources>

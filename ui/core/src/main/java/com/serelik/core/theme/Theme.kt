@@ -17,6 +17,7 @@ private val DarkColorScheme = darkColorScheme(
     background = BackGroundColor,
     surface = pink,
     onBackground = answerBackgroundColor,
+    onSurface = yellow
 )
 
 private val LightColorScheme = lightColorScheme(
@@ -26,6 +27,7 @@ private val LightColorScheme = lightColorScheme(
     background = BackGroundColor,
     surface = pink,
     onBackground = answerBackgroundColor,
+    onSurface = yellow
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
 

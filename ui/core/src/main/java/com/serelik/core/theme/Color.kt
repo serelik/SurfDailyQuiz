@@ -18,3 +18,5 @@ val disabledColor = Color(0xFFBABABA)
 val answerBackgroundColor = Color(0xFFF3F3F3)
 
 val pink = Color(0xFFBCB7FF)
+
+val yellow = Color(0xFFFFB800 )

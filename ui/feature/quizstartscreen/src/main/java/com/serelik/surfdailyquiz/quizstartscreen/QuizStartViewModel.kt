@@ -89,4 +89,13 @@ class QuizStartViewModel @Inject constructor(
 
     }
 
+    fun onNewQuizClick() {
+        selectAnswers.clear()
+        currentIndex = 0
+        quizItem = emptyList()
+        viewModelScope.launch {
+            _quizStateFlow.emit(QuizState.NotStarted)
+        }
+    }
+
 }

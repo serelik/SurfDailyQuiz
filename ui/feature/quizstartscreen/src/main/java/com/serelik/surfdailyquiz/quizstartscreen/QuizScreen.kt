@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -91,7 +93,7 @@ fun QuizScreen(
             )
 
             Text(
-                text = questionUiModel.questionItem.question,
+                text = AnnotatedString.fromHtml(questionUiModel.questionItem.question),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
@@ -131,6 +133,17 @@ fun QuizScreen(
         }
 
     }
+
+    Text(
+        stringResource(R.string.warning_message),
+        modifier = Modifier
+            .padding(horizontal = 20.dp)
+            .padding(vertical = 16.dp)
+        ,
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.labelSmall,
+        textAlign = TextAlign.Center
+    )
 
 }
 
@@ -180,7 +193,9 @@ fun ColumnScope.AnswerOption(
 
         Spacer(modifier = Modifier.padding(horizontal = 8.dp))
 
-        Text(answerOption)
+        Text(
+            AnnotatedString.fromHtml(answerOption),
+        )
 
     }
 
