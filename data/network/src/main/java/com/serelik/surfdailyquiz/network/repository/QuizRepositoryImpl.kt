@@ -9,10 +9,10 @@ import javax.inject.Inject
 class QuizRepositoryImpl @Inject constructor(
     private val quizApi: QuizApi,
     val mapper: QuizResponseMapper
-    ): QuizRepository {
+) : QuizRepository {
 
     override suspend fun getQuiz(): List<QuestionItem> {
-        val quizResponse=  quizApi.getQuiz()
+        val quizResponse = quizApi.getQuiz()
 
         return mapper.convert(quizResponse)
     }

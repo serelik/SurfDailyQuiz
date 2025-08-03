@@ -1,6 +1,5 @@
 package com.serelik.surfdailyquiz.quizstartscreen
 
-import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
 
 sealed interface QuizState {

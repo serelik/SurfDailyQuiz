@@ -47,7 +47,6 @@ dependencies {
     implementation(project(":data:database"))
     implementation(project(":domain"))
     implementation(project(":ui:core"))
-    implementation(project(":ui:common"))
     implementation(project(":ui:feature:history"))
 
 

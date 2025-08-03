@@ -4,6 +4,7 @@
     <bytecodeTargetLevel target="11">
       <module name="SurfDailyQuiz.common" target="21" />
       <module name="SurfDailyQuiz.network" target="21" />
+      <module name="SurfDailyQuiz.ui.common" target="21" />
       <module name="SurfDailyQuiz.ui.core_n" target="21" />
       <module name="SurfDailyQuiz.ui_old" target="21" />
     </bytecodeTargetLevel>

@@ -24,8 +24,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.VectorPainter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
@@ -33,11 +31,10 @@ import androidx.compose.ui.text.fromHtml
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.quizstartscreen.R
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
-import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
-
 
 @Composable
 fun QuizScreen(
@@ -45,7 +42,6 @@ fun QuizScreen(
     onNextClick: () -> Unit = {},
     onSelectClick: (answer: String) -> Unit = {}
 ) {
-
     Column(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -138,8 +134,7 @@ fun QuizScreen(
         stringResource(R.string.warning_message),
         modifier = Modifier
             .padding(horizontal = 20.dp)
-            .padding(vertical = 16.dp)
-        ,
+            .padding(vertical = 16.dp),
         color = MaterialTheme.colorScheme.primary,
         style = MaterialTheme.typography.labelSmall,
         textAlign = TextAlign.Center
@@ -221,7 +216,6 @@ fun Preview() {
                 ),
                 selectAnswer = "Яблоко"
             ),
-
-            )
+        )
     }
 }

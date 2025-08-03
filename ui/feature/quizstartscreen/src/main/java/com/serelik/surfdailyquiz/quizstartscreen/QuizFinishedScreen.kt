@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
@@ -26,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.quizstartscreen.R
 import com.serelik.core_n.R as CoreR
-import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
+import com.serelik.core.theme.SurfDailyQuizTheme
 
 @Composable
 fun QuizFinishedScreen(
@@ -118,8 +117,7 @@ fun DrawStarCorrect() {
         painterResource(CoreR.drawable.star_icon),
         contentDescription = null,
         modifier = Modifier
-            .padding(horizontal = 4.dp)
-        ,
+            .padding(horizontal = 4.dp),
         tint = MaterialTheme.colorScheme.onSurface
     )
 }
@@ -146,8 +144,6 @@ fun SummaryMessage(finishUiModel: QuizState.QuizFinishUiModel) {
         textAlign = TextAlign.Center
     )
 
-
-
     Text(
         text = summaryMessage,
         modifier = Modifier
@@ -168,7 +164,7 @@ fun getSummaryTitle(count: Int): String {
         3 -> stringResource(R.string.summary_Title_3)
         4 -> stringResource(R.string.summary_Title_4)
         5 -> stringResource(R.string.summary_Title_5)
-        else -> "Что то пошло не так"
+        else -> stringResource(R.string.exception_message)
     }
 }
 
@@ -181,7 +177,7 @@ fun getSummaryMessage(count: Int): String {
         3 -> stringResource(R.string.summary_message_3)
         4 -> stringResource(R.string.summary_message_4)
         5 -> stringResource(R.string.summary_message_5)
-        else -> "Что то пошло не так"
+        else -> stringResource(R.string.exception_message)
     }
 }
 

@@ -87,9 +87,7 @@ fun StartScreen(
                 viewModel::onNewQuizClick
             )
         }
-
     }
-
 }
 
 @Composable
@@ -105,8 +103,7 @@ fun StartScreenUi(
         enabled = true,
         contentPadding = PaddingValues(12.dp),
         shape = ShapeDefaults.ExtraLarge,
-
-        ) {
+    ) {
 
         Text(
             text = stringResource(R.string.history_button_name),
@@ -169,7 +166,6 @@ fun StartScreenUi(
         ) {
             Text(text = stringResource(R.string.quiz_start))
         }
-
     }
 }
 

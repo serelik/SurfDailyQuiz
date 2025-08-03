@@ -1,4 +1,4 @@
-package com.serelik.surfdailyquiz.ui.theme
+package com.serelik.core.theme
 
 import androidx.compose.ui.graphics.Color
 
