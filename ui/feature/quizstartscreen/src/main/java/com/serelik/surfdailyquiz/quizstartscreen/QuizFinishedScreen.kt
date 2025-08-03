@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
@@ -24,6 +25,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.quizstartscreen.R
+import com.serelik.core_n.R as CoreR
 import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
 
 @Composable
@@ -113,10 +115,11 @@ fun QuizFinishedScreen(
 @Composable
 fun DrawStarCorrect() {
     Icon(
-        painterResource(R.drawable.star_icon),
+        painterResource(CoreR.drawable.star_icon),
         contentDescription = null,
         modifier = Modifier
-            .padding(horizontal = 4.dp),
+            .padding(horizontal = 4.dp)
+        ,
         tint = MaterialTheme.colorScheme.onSurface
     )
 }
@@ -124,7 +127,7 @@ fun DrawStarCorrect() {
 @Composable
 fun DrawStarIncorrect() {
     Icon(
-        painterResource(R.drawable.star_icon),
+        painterResource(CoreR.drawable.star_icon),
         contentDescription = null,
         modifier = Modifier
             .padding(horizontal = 4.dp),

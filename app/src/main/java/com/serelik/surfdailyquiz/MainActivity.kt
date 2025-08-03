@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import com.serelik.surfdailyquiz.quizstartscreen.StartScreen
 import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -17,7 +18,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SurfDailyQuizTheme {
-                StartScreen()
+                val navController = rememberNavController()
+                QuizAppNavigation(navController)
             }
         }
     }
@@ -29,6 +31,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun GreetingPreview() {
     SurfDailyQuizTheme {
-        StartScreen()
+        StartScreen( {})
     }
 }

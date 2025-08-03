@@ -37,7 +37,7 @@ import com.serelik.quizstartscreen.R
 
 @Composable
 fun StartScreen(
-    //  onHistoryClick:()->  Unit,
+    onHistoryClick: () -> Unit,
 ) {
 
     val viewModel: QuizStartViewModel = hiltViewModel()
@@ -60,9 +60,16 @@ fun StartScreen(
         ) {
 
         when (quizState.value) {
-            QuizState.NotStarted -> StartScreenUi(viewModel::onStartQuizClick)
+            QuizState.NotStarted -> StartScreenUi(
+                viewModel::onStartQuizClick,
+                onHistoryClick = onHistoryClick
+            )
+
             QuizState.Error -> {
-                StartScreenUi(viewModel::onStartQuizClick)
+                StartScreenUi(
+                    viewModel::onStartQuizClick,
+                    onHistoryClick = onHistoryClick
+                )
                 Toast.makeText(context, "Ошибка! Попробуйте ещё раз", Toast.LENGTH_SHORT).show()
             }
 
@@ -86,10 +93,13 @@ fun StartScreen(
 }
 
 @Composable
-fun StartScreenUi(onStartClick: () -> Unit) {
+fun StartScreenUi(
+    onStartClick: () -> Unit,
+    onHistoryClick: () -> Unit
+) {
     Button(
         onClick = {
-
+            onHistoryClick.invoke()
         },
         modifier = Modifier.padding(top = 52.dp),
         enabled = true,
