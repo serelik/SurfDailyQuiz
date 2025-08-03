@@ -48,6 +48,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":ui:core"))
     implementation(project(":ui:common"))
+    implementation(project(":ui:feature:history"))
 
 
     implementation(libs.androidx.core.ktx)
