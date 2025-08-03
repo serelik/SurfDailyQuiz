@@ -13,6 +13,10 @@ class QuizResponseMapper @Inject() constructor() {
                 question = it.question,
                 correctAnswer = it.correctAnswer,
                 incorrectAnswers = it.incorrectAnswers,
+                id = -1,
+                type = it.type,
+                category = it.category,
+                difficulty = it.difficulty,
             ))
         }
 

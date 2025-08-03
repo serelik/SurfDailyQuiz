@@ -6,7 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.serelik.surfdailyquiz.ui.feature.StartScreen.StartScreen
+import com.serelik.surfdailyquiz.quizstartscreen.StartScreen
 import com.serelik.surfdailyquiz.ui.theme.SurfDailyQuizTheme
 import dagger.hilt.android.AndroidEntryPoint
 
