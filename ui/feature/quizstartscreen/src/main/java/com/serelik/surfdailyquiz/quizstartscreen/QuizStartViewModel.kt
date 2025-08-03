@@ -3,6 +3,7 @@ package com.serelik.surfdailyquiz.quizstartscreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
+import com.serelik.surfdailyquiz.domain.repository.QuizCacheRepository
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
 import com.serelik.surfdailyquiz.quizstartscreen.usecase.GetQuizzesUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -12,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class QuizStartViewModel @Inject constructor(
-    private val useCase: GetQuizzesUseCase
+    private val useCase: GetQuizzesUseCase,
+    private val repository: QuizCacheRepository
 ) : ViewModel() {
     private val _quizStateFlow = MutableStateFlow<QuizState>(QuizState.NotStarted)
 
@@ -85,6 +87,11 @@ class QuizStartViewModel @Inject constructor(
         )
         viewModelScope.launch {
             _quizStateFlow.emit(result)
+            repository.saveHistory(
+                quizItem.toList(),
+                answers = selectAnswers.toMap(),
+                correctAnswersCount = correctAnswers,
+            )
         }
 
     }

@@ -3,10 +3,12 @@ package com.serelik.surfdailyquiz.data.database.di
 import android.content.Context
 import androidx.room.Room
 import com.serelik.surfdailyquiz.data.database.QuizDatabase
+import com.serelik.surfdailyquiz.data.database.dao.QuizDao
 import com.serelik.surfdailyquiz.data.database.mapper.QuizEntityMapper
 import com.serelik.surfdailyquiz.data.database.models.DbContract
 import com.serelik.surfdailyquiz.data.database.repository.QuizCacheRepositoryImpl
 import com.serelik.surfdailyquiz.domain.repository.QuizCacheRepository
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,8 +18,8 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class DatabaseModule {
-
+abstract class DatabaseModule {
+    companion object {
         @Provides
         @Singleton
         fun provideDatabase(@ApplicationContext applicationContext: Context): QuizDatabase =
@@ -29,24 +31,14 @@ class DatabaseModule {
                 .fallbackToDestructiveMigration(true)
                 .build()
 
-       /* @Provides
+        @Provides
         fun provideBooksDao(database: QuizDatabase): QuizDao {
             return database.quizDao
-        }*/
-
-        @Provides
-        fun providesccc(
-            database: QuizDatabase
-        ): QuizCacheRepository {
-            return QuizCacheRepositoryImpl(
-                dao = database.quizDao,
-                mapper = QuizEntityMapper()
-            )
         }
+    }
 
 
-    /*
-        @Binds
-        abstract fun bindQuizCacheRepository(repository: QuizCacheRepositoryImpl): QuizCacheRepository*/
+    @Binds
+    abstract fun bindQuizCacheRepository(repository: QuizCacheRepositoryImpl): QuizCacheRepository
 
 }

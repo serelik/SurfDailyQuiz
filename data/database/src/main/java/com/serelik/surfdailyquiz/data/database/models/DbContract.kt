@@ -24,4 +24,18 @@ internal object DbContract {
         const val COLUMN_NAME_INCORRECT_ANSWERS = "incorrect_answers"
     }
 
+
+    object History {
+        const val TABLE_NAME = "history"
+
+        const val COLUMN_NAME_ID = BaseColumns._ID
+        const val COLUMN_NAME_QUIZZES_ID = "quiz_id"
+        const val COLUMN_NAME_TIMESTAMP = "timestamp"
+
+        const val COLUMN_NAME_ANSWERS = "answers"
+
+        const val COLUMN_NAME_CORRECT_ANSWERS_COUNT = "correctAnswersCount"
+
+    }
+
 }
