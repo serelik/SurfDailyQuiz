@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.room.Room
 import com.serelik.surfdailyquiz.data.database.QuizDatabase
 import com.serelik.surfdailyquiz.data.database.dao.QuizDao
-import com.serelik.surfdailyquiz.data.database.mapper.QuizEntityMapper
 import com.serelik.surfdailyquiz.data.database.models.DbContract
 import com.serelik.surfdailyquiz.data.database.repository.QuizCacheRepositoryImpl
 import com.serelik.surfdailyquiz.domain.repository.QuizCacheRepository

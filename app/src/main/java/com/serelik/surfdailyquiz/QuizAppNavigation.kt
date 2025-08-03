@@ -18,6 +18,6 @@ fun QuizAppNavigation(
     ) {
         quiz(onHistoryClick = navController::navigateToHistory)
 
-        history(onBackClick = navController::popBackStack)
+        history()
     }
 }
