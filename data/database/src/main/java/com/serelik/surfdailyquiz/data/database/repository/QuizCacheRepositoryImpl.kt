@@ -11,12 +11,12 @@ import javax.inject.Inject
     val mapper: QuizEntityMapper
 ) : QuizCacheRepository {
 
-    override suspend fun addQuiz(quiz: QuestionItem): Int {
-        dao.addQuiz(mapper.toEntity(quiz))
-        return quiz.id
+    override suspend fun addQuiz(quiz: QuestionItem): Long {
+        return dao.addQuiz(mapper.toEntity(quiz))
+
     }
 
-    override suspend fun getQuiz(id: Int): QuestionItem {
+    override suspend fun getQuiz(id: Long): QuestionItem {
        return mapper.fromEntity(dao.getQuiz(id))
     }
 

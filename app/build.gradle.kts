@@ -44,6 +44,7 @@ android {
 dependencies {
     implementation(project(":ui:feature:quizstartscreen"))
     implementation(project(":data:network"))
+    implementation(project(":data:database"))
     implementation(project(":domain"))
     implementation(project(":ui:core"))
     implementation(project(":ui:common"))

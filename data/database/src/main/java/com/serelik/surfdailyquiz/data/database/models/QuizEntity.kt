@@ -11,7 +11,7 @@ import androidx.room.PrimaryKey
 data class QuizEntity(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = DbContract.Quizzes.COLUMN_NAME_ID)
-    val id: Int,
+    val id: Long?,
     @ColumnInfo(name = DbContract.Quizzes.COLUMN_NAME_TYPE)
     val type: String,
     @ColumnInfo(name = DbContract.Quizzes.COLUMN_NAME_DIFFICULTY)

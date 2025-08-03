@@ -10,8 +10,8 @@ import com.serelik.surfdailyquiz.data.database.models.QuizEntity
 interface QuizDao {
 
     @Insert(onConflict = OnConflictStrategy.NONE)
-    suspend fun addQuiz(quiz: QuizEntity) : QuizEntity
+    suspend fun addQuiz(quiz: QuizEntity): Long
 
     @Query("SELECT * FROM quizzes WHERE _id = :id")
-    suspend fun getQuiz(id: Int) : QuizEntity
+    suspend fun getQuiz(id: Long) : QuizEntity
 }

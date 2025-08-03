@@ -4,8 +4,8 @@ import com.serelik.surfdailyquiz.domain.models.QuestionItem
 
 interface QuizCacheRepository {
 
-    suspend fun addQuiz(quiz: QuestionItem) : Int
+    suspend fun addQuiz(quiz: QuestionItem) : Long
 
-    suspend fun getQuiz(id: Int):QuestionItem
+    suspend fun getQuiz(id: Long):QuestionItem
 
 }

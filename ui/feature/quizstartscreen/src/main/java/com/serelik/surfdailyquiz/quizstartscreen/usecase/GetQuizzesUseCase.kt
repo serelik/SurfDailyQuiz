@@ -10,7 +10,7 @@ class GetQuizzesUseCase @Inject constructor(
     private val networkRepository: QuizRepository
 ) {
 
-    suspend fun loadQuizzes(): List<Int> {
+    suspend fun loadQuizzes(): List<Long> {
         val result = networkRepository.getQuiz()
 
        return result.map { databaseRepository.addQuiz(it) }

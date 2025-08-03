@@ -21,7 +21,8 @@ class QuizStartViewModel @Inject constructor(
             _quizStateFlow.emit(QuizState.Loading)
             try {
                 _quizStateFlow.emit(QuizState.Result(useCase.loadQuizzes()))
-            } catch (_: Exception) {
+            } catch (e: Exception) {
+                e.printStackTrace()
                 _quizStateFlow.emit(QuizState.Error)
             }
         }

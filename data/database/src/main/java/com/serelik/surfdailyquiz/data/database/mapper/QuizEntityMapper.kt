@@ -6,15 +6,19 @@ import javax.inject.Inject
 
  class QuizEntityMapper @Inject constructor() {
 
+     companion object {
+         private const val SEPARATOR = "$%#"
+     }
     fun toEntity(questionItem: QuestionItem): QuizEntity {
 
+
         return QuizEntity(
-            id = questionItem.id,
+            id = null,
             type = questionItem.type,
             difficulty = questionItem.difficulty,
             question = questionItem.question,
             correctAnswer = questionItem.correctAnswer,
-            incorrectAnswers = questionItem.incorrectAnswers.joinToString(", "),
+            incorrectAnswers = questionItem.incorrectAnswers.joinToString(SEPARATOR),
             category = questionItem.category
         )
     }
@@ -22,10 +26,10 @@ import javax.inject.Inject
     fun fromEntity(quizEntity: QuizEntity): QuestionItem {
 
         return QuestionItem(
-            id = quizEntity.id,
+            id = quizEntity.id?: -1,
             question = quizEntity.question,
             correctAnswer = quizEntity.correctAnswer,
-            incorrectAnswers = quizEntity.incorrectAnswers.split(", "),
+            incorrectAnswers = quizEntity.incorrectAnswers.split(SEPARATOR),
             type = quizEntity.type,
             category = quizEntity.category,
             difficulty = quizEntity.difficulty

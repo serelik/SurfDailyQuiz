@@ -1,7 +1,7 @@
 package com.serelik.surfdailyquiz.domain.models
 
 data class QuestionItem(
-    val id: Int,
+    val id: Long,
     val question: String,
     val correctAnswer: String,
     val incorrectAnswers: List<String>,
