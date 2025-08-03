@@ -2,6 +2,7 @@ package com.serelik.surfdailyquiz.ui.feature.history
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -29,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.serelik.surfdailyquiz.domain.models.HistoryListItem
 import java.time.format.DateTimeFormatter
 
@@ -66,7 +68,7 @@ fun HistoryListScreen() {
         } else
             LazyColumn {
                 items(historyState.value) { item ->
-                    QuizItemUi(item)
+                    QuizItemUi(item, viewModel::removeFromHistory)
                 }
             }
 
@@ -78,7 +80,7 @@ private val localDateFormatter = DateTimeFormatter.ofPattern("dd MMMM")
 private val localTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
 @Composable
-fun QuizItemUi(historyListItem: HistoryListItem) {
+fun QuizItemUi(historyListItem: HistoryListItem, onLongClick: (id: Long) -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -87,14 +89,17 @@ fun QuizItemUi(historyListItem: HistoryListItem) {
                 color = Color.White,
                 shape = ShapeDefaults.ExtraLarge
             )
-            .padding(horizontal = 24.dp),
+            .padding(horizontal = 24.dp)
+            .combinedClickable(
+                onLongClick = { onLongClick.invoke(historyListItem.id) },
+                onClick = {}
+            ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(top = 24.dp)
-            ,
+                .padding(top = 24.dp),
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(

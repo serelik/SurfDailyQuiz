@@ -47,6 +47,10 @@ class QuizCacheRepositoryImpl @Inject constructor(
         return dao.getQuizzesHistory().map { it.map(historyMapper::fromEntity) }
     }
 
+    override suspend fun removeById(id: Long) {
+        dao.deleteFromHistory(id)
+    }
+
     companion object {
         const val SEPARATOR = "$%$"
     }

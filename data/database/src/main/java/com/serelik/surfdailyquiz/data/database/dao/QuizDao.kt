@@ -1,6 +1,7 @@
 package com.serelik.surfdailyquiz.data.database.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -23,5 +24,8 @@ interface QuizDao {
 
     @Query("SELECT * FROM ${DbContract.History.TABLE_NAME}")
     fun getQuizzesHistory(): Flow<List<HistoryEntity>>
+
+    @Query("DELETE FROM history WHERE _id = :id")
+    suspend fun deleteFromHistory(id: Long)
 
 }

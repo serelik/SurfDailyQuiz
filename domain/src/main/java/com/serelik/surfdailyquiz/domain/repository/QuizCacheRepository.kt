@@ -18,4 +18,6 @@ interface QuizCacheRepository {
 
     fun getHistoryItem(): Flow<List<HistoryListItem>>
 
+    suspend fun removeById(id: Long)
+
 }
