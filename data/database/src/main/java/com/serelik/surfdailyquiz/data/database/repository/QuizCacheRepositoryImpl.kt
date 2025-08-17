@@ -47,6 +47,10 @@ class QuizCacheRepositoryImpl @Inject constructor(
         return dao.getQuizzesHistory().map { it.map(historyMapper::fromEntity) }
     }
 
+    override fun getHistoryItemById(id: Long): HistoryListItem {
+        return historyMapper.fromEntity(dao.getQuizHistoryById(id))
+    }
+
     override suspend fun removeById(id: Long) {
         dao.deleteFromHistory(id)
     }

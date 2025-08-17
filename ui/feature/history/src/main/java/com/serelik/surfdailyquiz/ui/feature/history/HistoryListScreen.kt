@@ -1,6 +1,7 @@
 package com.serelik.surfdailyquiz.ui.feature.history
 
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -30,13 +31,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.serelik.surfdailyquiz.domain.models.HistoryListItem
 import java.time.format.DateTimeFormatter
 
 
 @Composable
-fun HistoryListScreen() {
+fun HistoryListScreen(onHistoryItemClick: (id: String) -> Unit) {
 
     val viewModel: HistoryViewmodel = hiltViewModel()
 
@@ -68,7 +68,15 @@ fun HistoryListScreen() {
         } else
             LazyColumn {
                 items(historyState.value) { item ->
-                    QuizItemUi(item, viewModel::removeFromHistory)
+                    QuizItemUi(
+                        historyListItem = item,
+                        onHistoryItemClick = {
+                            Log.d("checkks", "TAPPED")
+                            onHistoryItemClick(item.id.toString())
+                        },
+                        //   onLongClick = viewModel::removeFromHistory
+
+                    )
                 }
             }
 
@@ -80,7 +88,12 @@ private val localDateFormatter = DateTimeFormatter.ofPattern("dd MMMM")
 private val localTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 
 @Composable
-fun QuizItemUi(historyListItem: HistoryListItem, onLongClick: (id: Long) -> Unit) {
+fun QuizItemUi(
+    historyListItem: HistoryListItem,
+    //  onLongClick: (id: Long) -> Unit,
+    onHistoryItemClick: (id: String) -> Unit
+) {
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -91,8 +104,10 @@ fun QuizItemUi(historyListItem: HistoryListItem, onLongClick: (id: Long) -> Unit
             )
             .padding(horizontal = 24.dp)
             .combinedClickable(
-                onLongClick = { onLongClick.invoke(historyListItem.id) },
-                onClick = {}
+                //    onLongClick = { onLongClick.invoke(historyListItem.id) },
+                onClick = {
+                    onHistoryItemClick(historyListItem.id.toString())
+                }
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
@@ -155,5 +170,5 @@ fun Stars(starCount: Int) {
 @Composable
 @Preview
 fun Preview() {
-    HistoryListScreen()
+    HistoryListScreen({ })
 }

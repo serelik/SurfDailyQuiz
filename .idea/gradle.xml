@@ -20,6 +20,7 @@
             <option value="$PROJECT_DIR$/ui/feature" />
             <option value="$PROJECT_DIR$/ui/feature/history" />
             <option value="$PROJECT_DIR$/ui/feature/quizstartscreen" />
+            <option value="$PROJECT_DIR$/ui/feature/results" />
           </set>
         </option>
       </GradleProjectSettings>

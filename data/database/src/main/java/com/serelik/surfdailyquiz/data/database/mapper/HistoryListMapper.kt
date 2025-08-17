@@ -12,9 +12,11 @@ class HistoryListMapper @Inject constructor() {
     fun fromEntity(quizEntity: HistoryEntity): HistoryListItem {
 
         return HistoryListItem(
-            id = quizEntity.id?: -1,
+            id = quizEntity.id ?: -1,
+            quizzesIds = quizEntity.quizId.split(", ").map { it.toLong() },
             correctAnswersCount = quizEntity.correctAnswersCount,
             questionsCount = quizEntity.quizId.split(", ").size,
+            userAnswer = quizEntity.userAnswers,
             timestamp = LocalDateTime.ofInstant(
                 Instant.ofEpochMilli(quizEntity.timestamp), TimeZone
                     .getDefault().toZoneId()

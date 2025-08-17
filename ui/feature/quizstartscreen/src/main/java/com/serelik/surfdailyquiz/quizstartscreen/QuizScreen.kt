@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.quizstartscreen.R
+import com.serelik.core_n.R as CoreR
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
 
@@ -80,7 +81,7 @@ fun QuizScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(R.string.question_number, questionUiModel.questionNumber),
+                text = stringResource(CoreR.string.question_number, questionUiModel.questionNumber),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(horizontal = 24.dp)

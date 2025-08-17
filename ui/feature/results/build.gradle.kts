@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlinAndroidKsp)
@@ -7,17 +7,14 @@ plugins {
 }
 
 android {
-    namespace = "com.serelik.surfdailyquiz"
+    namespace = "com.serelik.results"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "com.serelik.surfdailyquiz"
-        minSdk = 26
-        targetSdk = 36
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = 24
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
@@ -36,41 +33,24 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
-    buildFeatures {
-        compose = true
-    }
 }
 
 dependencies {
-    implementation(project(":ui:feature:quizstartscreen"))
-    implementation(project(":data:network"))
-    implementation(project(":data:database"))
-    implementation(project(":domain"))
     implementation(project(":ui:core"))
-    implementation(project(":ui:feature:history"))
-    implementation(project(":ui:feature:results"))
-
+    implementation(project(":domain"))
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.appcompat)
     implementation(libs.androidx.activity.compose)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.junit)
-    androidTestImplementation(libs.androidx.espresso.core)
-    androidTestImplementation(platform(libs.androidx.compose.bom))
-    androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
-    debugImplementation(libs.androidx.ui.test.manifest)
 
     implementation(libs.androidx.navigation.compose)
     implementation(libs.hilt.android)
     implementation(libs.navigation.hilt)
     ksp(libs.hilt.compiler)
-
-
 }
