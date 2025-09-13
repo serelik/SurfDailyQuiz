@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ResultsViewModel @Inject constructor(
     private val repository: QuizCacheRepository,
-    private val savedStateHandle: SavedStateHandle
+    savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
 

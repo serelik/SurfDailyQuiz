@@ -1,7 +1,5 @@
 package com.serelik.surfdailyquiz.ui.feature.history
 
-
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
@@ -71,10 +69,9 @@ fun HistoryListScreen(onHistoryItemClick: (id: String) -> Unit) {
                     QuizItemUi(
                         historyListItem = item,
                         onHistoryItemClick = {
-                            Log.d("checkks", "TAPPED")
                             onHistoryItemClick(item.id.toString())
                         },
-                        //   onLongClick = viewModel::removeFromHistory
+                           onLongClick = viewModel::removeFromHistory
 
                     )
                 }
@@ -90,7 +87,7 @@ private val localTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
 @Composable
 fun QuizItemUi(
     historyListItem: HistoryListItem,
-    //  onLongClick: (id: Long) -> Unit,
+    onLongClick: (id: Long) -> Unit,
     onHistoryItemClick: (id: String) -> Unit
 ) {
 
@@ -104,7 +101,7 @@ fun QuizItemUi(
             )
             .padding(horizontal = 24.dp)
             .combinedClickable(
-                //    onLongClick = { onLongClick.invoke(historyListItem.id) },
+                    onLongClick = { onLongClick.invoke(historyListItem.id) },
                 onClick = {
                     onHistoryItemClick(historyListItem.id.toString())
                 }
