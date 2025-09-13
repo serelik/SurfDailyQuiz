@@ -46,6 +46,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.serelik.core.theme.White
 import com.serelik.results.models.ResultQuestionUiModel
 import com.serelik.results.models.ResultSummaryUiModel
+import com.serelik.surfdailyquiz.common.DrawStarCorrect
+import com.serelik.surfdailyquiz.common.DrawStarIncorrect
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -238,28 +240,6 @@ fun getSummaryMessage(count: Int): String {
         5 -> stringResource(CoreR.string.summary_message_5)
         else -> stringResource(CoreR.string.exception_message)
     }
-}
-
-@Composable
-fun DrawStarCorrect() {
-    Icon(
-        painterResource(CoreR.drawable.star_icon),
-        contentDescription = null,
-        modifier = Modifier
-            .padding(horizontal = 4.dp),
-        tint = MaterialTheme.colorScheme.onSurface
-    )
-}
-
-@Composable
-fun DrawStarIncorrect() {
-    Icon(
-        painterResource(CoreR.drawable.star_icon),
-        contentDescription = null,
-        modifier = Modifier
-            .padding(horizontal = 4.dp),
-        tint = MaterialTheme.colorScheme.tertiary
-    )
 }
 
 @Composable

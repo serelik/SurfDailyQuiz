@@ -2,12 +2,10 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.kotlinAndroidKsp)
-    alias(libs.plugins.hiltAndroid)
 }
 
 android {
-    namespace = "com.serelik.results"
+    namespace = "com.serelik.surfdailyquiz.common"
     compileSdk = 36
 
     defaultConfig {
@@ -26,6 +24,7 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
@@ -37,8 +36,6 @@ android {
 
 dependencies {
     implementation(project(":ui:core"))
-    implementation(project(":domain"))
-    implementation(project(":ui:common"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
@@ -49,9 +46,4 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     debugImplementation(libs.androidx.ui.tooling)
-
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.hilt.android)
-    implementation(libs.navigation.hilt)
-    ksp(libs.hilt.compiler)
 }

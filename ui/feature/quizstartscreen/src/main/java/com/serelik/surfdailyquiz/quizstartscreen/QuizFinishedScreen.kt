@@ -24,6 +24,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
+import com.serelik.surfdailyquiz.common.DrawStarCorrect
+import com.serelik.surfdailyquiz.common.DrawStarIncorrect
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -108,28 +110,6 @@ fun QuizFinishedScreen(
 
         }
     }
-}
-
-@Composable
-fun DrawStarCorrect() {
-    Icon(
-        painterResource(CoreR.drawable.star_icon),
-        contentDescription = null,
-        modifier = Modifier
-            .padding(horizontal = 4.dp),
-        tint = MaterialTheme.colorScheme.onSurface
-    )
-}
-
-@Composable
-fun DrawStarIncorrect() {
-    Icon(
-        painterResource(CoreR.drawable.star_icon),
-        contentDescription = null,
-        modifier = Modifier
-            .padding(horizontal = 4.dp),
-        tint = MaterialTheme.colorScheme.tertiary
-    )
 }
 
 @Composable
