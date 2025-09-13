@@ -161,11 +161,11 @@ fun ResultView(
 
         }
 
-        resultQuestionUiModel.forEach {
-            QuestionView(
-                it
-            )
+        resultQuestionUiModel.forEachIndexed { index, model ->
+            QuestionView(index, model)
         }
+
+
 
 
 
@@ -345,6 +345,7 @@ fun LoaderView() {
 
 @Composable
 fun QuestionView(
+    questionIndex: Int,
     resultQuestionUiModel: ResultQuestionUiModel
 ) {
     Column(
@@ -364,7 +365,7 @@ fun QuestionView(
         Text(
             text = stringResource(
                 CoreR.string.question_number,
-                resultQuestionUiModel.questionNumber
+                questionIndex + 1
             ),
             textAlign = TextAlign.Center,
             modifier = Modifier

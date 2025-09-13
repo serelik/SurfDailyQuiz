@@ -21,7 +21,6 @@ class ResultsViewModel @Inject constructor(
     savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
-
     val historyId = savedStateHandle.get<Long>(ID_KEY) ?: error("HistoryId must be not null")
 
     init {
@@ -31,8 +30,6 @@ class ResultsViewModel @Inject constructor(
     private val _resultStateFlow = MutableStateFlow<ResultState>(ResultState.Loading)
 
     val quizStateFlow = _resultStateFlow
-
-    private var currentIndex = 0
 
     fun getHistoryItemById() {
         viewModelScope.launch {
@@ -50,7 +47,6 @@ class ResultsViewModel @Inject constructor(
                         )
                     )
 
-                    currentIndex++
                 }
 
                 _resultStateFlow.emit(
@@ -72,7 +68,6 @@ class ResultsViewModel @Inject constructor(
     ): ResultQuestionUiModel {
 
         val model = ResultQuestionUiModel(
-            questionNumber = currentIndex + 1,
             questionCount = historyListItem.questionsCount,
             questionItem = questionItem,
             selectedAnswer = historyListItem.userAnswer,
