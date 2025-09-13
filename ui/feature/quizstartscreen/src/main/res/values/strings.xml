@@ -4,5 +4,6 @@
     <string name="quiz_start">НАЧАТЬ ВИКТОРИНУ</string>
     <string name="quiz_greetings_title">Добро пожаловать\n в DailyQuiz!</string>
     <string name="forward">Далее</string>
+    <string name="end_quiz">Завершить</string>
     <string name="warning_message">Вернуться к предыдущим вопросам нельзя</string>
 </resources>

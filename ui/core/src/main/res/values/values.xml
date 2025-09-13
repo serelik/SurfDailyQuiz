@@ -17,4 +17,5 @@
     <string name="summary_Title_5">Идеально!</string>
     <string name="exception_message">Что то пошло не так</string>
     <string name="question_number">Вопрос %1$d из 5</string>
+    <string name="your_answers">Твои ответы</string>
 </resources>

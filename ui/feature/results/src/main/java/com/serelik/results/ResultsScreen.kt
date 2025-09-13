@@ -48,6 +48,9 @@ import com.serelik.results.models.ResultQuestionUiModel
 import com.serelik.results.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.common.DrawStarCorrect
 import com.serelik.surfdailyquiz.common.DrawStarIncorrect
+import com.serelik.surfdailyquiz.common.MainButton
+import com.serelik.surfdailyquiz.common.getSummaryMessage
+import com.serelik.surfdailyquiz.common.getSummaryTitle
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -142,26 +145,14 @@ fun ResultView(
 
             SummaryMessage(resultSummaryUiModel)
 
-            Button(
-                onClick = onStartAgainClick,
-                shape = ShapeDefaults.Medium,
-                colors = ButtonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                    disabledContentColor = MaterialTheme.colorScheme.primary
-                ),
-                modifier = Modifier
-                    .padding(top = 52.dp, bottom = 24.dp)
-                    .requiredSize(width = 260.dp, height = 50.dp)
-
-            ) {
-                Text(
-                    text = stringResource(CoreR.string.start_again),
-                )
-            }
-
         }
+
+        Text(
+          text =   stringResource(CoreR.string.your_answers),
+            modifier = Modifier.padding(top = 36.dp),
+            color = MaterialTheme.colorScheme.primary,
+                style = MaterialTheme.typography.headlineLarge
+        )
 
         resultQuestionUiModel.forEachIndexed { index, model ->
             QuestionView(index, model)
@@ -171,24 +162,12 @@ fun ResultView(
 
 
 
-        Button(
+        MainButton(
             onClick = onStartAgainClick,
-            shape = ShapeDefaults.Medium,
-            colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                contentColor = MaterialTheme.colorScheme.primary,
-                disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                disabledContentColor = MaterialTheme.colorScheme.primary
-            ),
-            modifier = Modifier
-                .padding(top = 52.dp, bottom = 24.dp)
-                .requiredSize(width = 260.dp, height = 50.dp)
-
-        ) {
-            Text(
-                text = stringResource(CoreR.string.start_again),
-            )
-        }
+            text = stringResource(CoreR.string.start_again),
+            containerColor = MaterialTheme.colorScheme.primary,
+            contentColor = MaterialTheme.colorScheme.secondary,
+        )
 
     }
 
@@ -214,32 +193,6 @@ fun SummaryMessage(resultSummaryUiModel: ResultSummaryUiModel) {
         textAlign = TextAlign.Center
     )
 
-}
-
-@Composable
-fun getSummaryTitle(count: Int): String {
-    return when (count) {
-        0 -> stringResource(CoreR.string.summary_Title_0)
-        1 -> stringResource(CoreR.string.summary_Title_1)
-        2 -> stringResource(CoreR.string.summary_Title_2)
-        3 -> stringResource(CoreR.string.summary_Title_3)
-        4 -> stringResource(CoreR.string.summary_Title_4)
-        5 -> stringResource(CoreR.string.summary_Title_5)
-        else -> stringResource(CoreR.string.exception_message)
-    }
-}
-
-@Composable
-fun getSummaryMessage(count: Int): String {
-    return when (count) {
-        0 -> stringResource(CoreR.string.summary_message_0)
-        1 -> stringResource(CoreR.string.summary_message_1)
-        2 -> stringResource(CoreR.string.summary_message_2)
-        3 -> stringResource(CoreR.string.summary_message_3)
-        4 -> stringResource(CoreR.string.summary_message_4)
-        5 -> stringResource(CoreR.string.summary_message_5)
-        else -> stringResource(CoreR.string.exception_message)
-    }
 }
 
 @Composable

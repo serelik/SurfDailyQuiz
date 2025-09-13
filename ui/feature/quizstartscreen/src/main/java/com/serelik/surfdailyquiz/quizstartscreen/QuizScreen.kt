@@ -33,6 +33,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.quizstartscreen.R
+import com.serelik.surfdailyquiz.common.MainButton
 import com.serelik.core_n.R as CoreR
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
@@ -106,26 +107,13 @@ fun QuizScreen(
                 )
             }
 
-
-            Button(
+            MainButton(
                 onClick = { onNextClick.invoke() },
-                enabled = questionUiModel.selectAnswer != null,
-                shape = ShapeDefaults.Medium,
-                colors = ButtonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                    disabledContentColor = MaterialTheme.colorScheme.primary
+                isEnabled = questionUiModel.selectAnswer != null,
+                text = if (questionUiModel.questionNumber < 5) stringResource(R.string.forward) else stringResource(
+                    R.string.end_quiz
                 ),
-                modifier = Modifier
-                    .padding(top = 60.dp, bottom = 24.dp)
-                    .requiredSize(width = 260.dp, height = 50.dp)
-
-            ) {
-                Text(
-                    text = stringResource(R.string.forward),
-                )
-            }
+            )
 
         }
 

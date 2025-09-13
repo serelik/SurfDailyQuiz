@@ -7,10 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
 import androidx.compose.material3.Text
@@ -18,7 +14,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -26,6 +21,9 @@ import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.surfdailyquiz.common.DrawStarCorrect
 import com.serelik.surfdailyquiz.common.DrawStarIncorrect
+import com.serelik.surfdailyquiz.common.MainButton
+import com.serelik.surfdailyquiz.common.getSummaryMessage
+import com.serelik.surfdailyquiz.common.getSummaryTitle
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -89,24 +87,10 @@ fun QuizFinishedScreen(
 
             SummaryMessage(finishUiModel)
 
-            Button(
+            MainButton(
                 onClick = { onNewQuizClick.invoke() },
-                shape = ShapeDefaults.Medium,
-                colors = ButtonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                    disabledContentColor = MaterialTheme.colorScheme.primary
-                ),
-                modifier = Modifier
-                    .padding(top = 52.dp, bottom = 24.dp)
-                    .requiredSize(width = 260.dp, height = 50.dp)
-
-            ) {
-                Text(
-                    text = stringResource(CoreR.string.start_again),
-                )
-            }
+                text = stringResource(CoreR.string.start_again),
+            )
 
         }
     }
@@ -132,32 +116,6 @@ fun SummaryMessage(finishUiModel: QuizState.QuizFinishUiModel) {
         textAlign = TextAlign.Center
     )
 
-}
-
-@Composable
-fun getSummaryTitle(count: Int): String {
-    return when (count) {
-        0 -> stringResource(CoreR.string.summary_Title_0)
-        1 -> stringResource(CoreR.string.summary_Title_1)
-        2 -> stringResource(CoreR.string.summary_Title_2)
-        3 -> stringResource(CoreR.string.summary_Title_3)
-        4 -> stringResource(CoreR.string.summary_Title_4)
-        5 -> stringResource(CoreR.string.summary_Title_5)
-        else -> stringResource(CoreR.string.exception_message)
-    }
-}
-
-@Composable
-fun getSummaryMessage(count: Int): String {
-    return when (count) {
-        0 -> stringResource(CoreR.string.summary_message_0)
-        1 -> stringResource(CoreR.string.summary_message_1)
-        2 -> stringResource(CoreR.string.summary_message_2)
-        3 -> stringResource(CoreR.string.summary_message_3)
-        4 -> stringResource(CoreR.string.summary_message_4)
-        5 -> stringResource(CoreR.string.summary_message_5)
-        else -> stringResource(CoreR.string.exception_message)
-    }
 }
 
 @Preview
