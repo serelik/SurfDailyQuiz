@@ -22,14 +22,8 @@ fun NavGraphBuilder.results(
             }
         )
 
-    ) { backStackEntry ->
-
-        val id = backStackEntry.arguments?.getLong(ID_KEY)
-
-        ResultsScreen(
-            historyId = id,
-            onStartAgainClick
-        )
+    ) {
+        ResultsScreen(onStartAgainClick)
     }
 }
 

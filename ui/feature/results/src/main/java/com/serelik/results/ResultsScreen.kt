@@ -50,16 +50,12 @@ import com.serelik.core_n.R as CoreR
 
 @Composable
 fun ResultsScreen(
-    historyId: Long?,
     onStartAgainClick: () -> Unit
 ) {
 
     val viewModel: ResultsViewModel = hiltViewModel()
 
     val quizStateFlow = viewModel.quizStateFlow.collectAsState()
-
-    if (historyId != null)
-        viewModel.getHistoryItemById(historyId)
 
     when (quizStateFlow.value) {
         ResultState.Loading -> LoaderView()

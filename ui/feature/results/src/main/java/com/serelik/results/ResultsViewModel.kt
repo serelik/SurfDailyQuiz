@@ -1,5 +1,6 @@
 package com.serelik.results
 
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serelik.results.models.ResultQuestionUiModel
@@ -16,8 +17,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ResultsViewModel @Inject constructor(
-    private val repository: QuizCacheRepository
+    private val repository: QuizCacheRepository,
+    private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
+
+
+    val historyId = savedStateHandle.get<Long>(ID_KEY) ?: error("HistoryId must be not null")
+
+    init {
+        getHistoryItemById()
+    }
 
     private val _resultStateFlow = MutableStateFlow<ResultState>(ResultState.Loading)
 
@@ -25,10 +34,10 @@ class ResultsViewModel @Inject constructor(
 
     private var currentIndex = 0
 
-    fun getHistoryItemById(id: Long) {
+    fun getHistoryItemById() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                val historyListItem = repository.getHistoryItemById(id)
+                val historyListItem = repository.getHistoryItemById(historyId)
                 val quiz = repository.getQuiz(historyListItem.quizzesIds)
 
                 val resultQuizList = mutableListOf<ResultQuestionUiModel>()
