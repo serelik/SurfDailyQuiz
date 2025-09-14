@@ -9,12 +9,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
@@ -34,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.quizstartscreen.R
 import com.serelik.surfdailyquiz.common.MainButton
-import com.serelik.core_n.R as CoreR
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
+import com.serelik.core_n.R as CoreR
 
 @Composable
 fun QuizScreen(

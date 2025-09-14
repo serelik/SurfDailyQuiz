@@ -2,7 +2,6 @@ package com.serelik.results
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Row
@@ -10,11 +9,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.rememberScrollState
@@ -22,9 +19,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
@@ -48,6 +42,7 @@ import com.serelik.results.models.ResultQuestionUiModel
 import com.serelik.results.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.common.DrawStarCorrect
 import com.serelik.surfdailyquiz.common.DrawStarIncorrect
+import com.serelik.surfdailyquiz.common.LoaderView
 import com.serelik.surfdailyquiz.common.MainButton
 import com.serelik.surfdailyquiz.common.getSummaryMessage
 import com.serelik.surfdailyquiz.common.getSummaryTitle
@@ -158,10 +153,6 @@ fun ResultView(
             QuestionView(index, model)
         }
 
-
-
-
-
         MainButton(
             onClick = onStartAgainClick,
             text = stringResource(CoreR.string.start_again),
@@ -192,7 +183,6 @@ fun SummaryMessage(resultSummaryUiModel: ResultSummaryUiModel) {
             .padding(horizontal = 12.dp),
         textAlign = TextAlign.Center
     )
-
 }
 
 @Composable
@@ -263,19 +253,6 @@ fun ColumnScope.Answers(
     }
 
 }
-
-@Composable
-fun LoaderView() {
-    Box(
-        Modifier.fillMaxSize(),
-        contentAlignment = Alignment.Center,
-    ) {
-        CircularProgressIndicator(
-            color = MaterialTheme.colorScheme.primary,
-        )
-    }
-}
-
 @Composable
 fun QuestionView(
     questionIndex: Int,
