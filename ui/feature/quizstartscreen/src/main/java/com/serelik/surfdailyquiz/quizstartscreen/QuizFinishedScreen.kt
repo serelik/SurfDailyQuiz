@@ -15,15 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.surfdailyquiz.common.DrawStarCorrect
 import com.serelik.surfdailyquiz.common.DrawStarIncorrect
 import com.serelik.surfdailyquiz.common.MainButton
-import com.serelik.surfdailyquiz.common.getSummaryMessage
-import com.serelik.surfdailyquiz.common.getSummaryTitle
+import com.serelik.surfdailyquiz.common.SummaryMessage
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -61,11 +57,11 @@ fun QuizFinishedScreen(
             Row {
 
 
-                repeat(finishUiModel.correctCount) {
+                repeat(finishUiModel.resultSummaryUiModel.correctCount) {
                     DrawStarCorrect()
                 }
 
-                repeat(finishUiModel.allCount - finishUiModel.correctCount) {
+                repeat(finishUiModel.resultSummaryUiModel.allCount - finishUiModel.resultSummaryUiModel.correctCount) {
                     DrawStarIncorrect()
                 }
             }
@@ -76,7 +72,9 @@ fun QuizFinishedScreen(
 
             Text(
                 stringResource(
-                    CoreR.string.correct_from_all, finishUiModel.correctCount, finishUiModel.allCount
+                    CoreR.string.correct_from_all,
+                    finishUiModel.resultSummaryUiModel.correctCount,
+                    finishUiModel.resultSummaryUiModel.allCount
                 ),
                 color = MaterialTheme.colorScheme.onSurface
             )
@@ -85,7 +83,7 @@ fun QuizFinishedScreen(
                 modifier = Modifier.height(24.dp)
             )
 
-            SummaryMessage(finishUiModel)
+            SummaryMessage(finishUiModel.resultSummaryUiModel)
 
             MainButton(
                 onClick = { onNewQuizClick.invoke() },
@@ -93,40 +91,5 @@ fun QuizFinishedScreen(
             )
 
         }
-    }
-}
-
-@Composable
-fun SummaryMessage(finishUiModel: QuizState.QuizFinishUiModel) {
-    val summaryTitle = getSummaryTitle(finishUiModel.correctCount)
-    val summaryMessage = getSummaryMessage(finishUiModel.correctCount)
-    Text(
-        text = summaryTitle,
-        style = MaterialTheme.typography.titleLarge,
-        modifier = Modifier,
-        textAlign = TextAlign.Center
-    )
-
-    Text(
-        text = summaryMessage,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)
-            .padding(horizontal = 12.dp),
-        textAlign = TextAlign.Center
-    )
-
-}
-
-@Preview
-@Composable
-fun PreviewCheck() {
-    SurfDailyQuizTheme {
-        QuizFinishedScreen(
-            QuizState.QuizFinishUiModel(
-                correctCount = 3,
-                allCount = 5
-            )
-        )
     }
 }

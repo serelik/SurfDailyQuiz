@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.serelik.results.models.ResultQuestionUiModel
-import com.serelik.results.models.ResultSummaryUiModel
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.domain.models.HistoryListItem
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.domain.repository.QuizCacheRepository

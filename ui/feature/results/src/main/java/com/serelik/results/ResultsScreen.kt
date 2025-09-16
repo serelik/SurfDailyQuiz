@@ -39,13 +39,12 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.serelik.core.theme.White
 import com.serelik.results.models.ResultQuestionUiModel
-import com.serelik.results.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.common.DrawStarCorrect
 import com.serelik.surfdailyquiz.common.DrawStarIncorrect
 import com.serelik.surfdailyquiz.common.LoaderView
 import com.serelik.surfdailyquiz.common.MainButton
-import com.serelik.surfdailyquiz.common.getSummaryMessage
-import com.serelik.surfdailyquiz.common.getSummaryTitle
+import com.serelik.surfdailyquiz.common.SummaryMessage
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -162,27 +161,6 @@ fun ResultView(
 
     }
 
-}
-
-@Composable
-fun SummaryMessage(resultSummaryUiModel: ResultSummaryUiModel) {
-    val summaryTitle = getSummaryTitle(resultSummaryUiModel.correctCount)
-    val summaryMessage = getSummaryMessage(resultSummaryUiModel.correctCount)
-    Text(
-        text = summaryTitle,
-        style = MaterialTheme.typography.titleLarge,
-        modifier = Modifier,
-        textAlign = TextAlign.Center
-    )
-
-    Text(
-        text = summaryMessage,
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp)
-            .padding(horizontal = 12.dp),
-        textAlign = TextAlign.Center
-    )
 }
 
 @Composable

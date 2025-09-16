@@ -1,7 +1,7 @@
 package com.serelik.results
 
 import com.serelik.results.models.ResultQuestionUiModel
-import com.serelik.results.models.ResultSummaryUiModel
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 
 sealed interface ResultState {
     data object Loading : ResultState

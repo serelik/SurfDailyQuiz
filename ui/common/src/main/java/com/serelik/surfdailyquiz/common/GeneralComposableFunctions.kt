@@ -2,8 +2,8 @@ package com.serelik.surfdailyquiz.common
 
 
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
@@ -20,9 +20,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.LineHeightStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 import com.serelik.core_n.R as CoreR
 
 @Composable
@@ -117,4 +118,26 @@ fun LoaderView() {
             modifier = Modifier.align(Alignment.Center)
         )
     }
+}
+
+@Composable
+fun SummaryMessage(finishUiModel: ResultSummaryUiModel) {
+    val summaryTitle = getSummaryTitle(finishUiModel.correctCount)
+    val summaryMessage = getSummaryMessage(finishUiModel.correctCount)
+    Text(
+        text = summaryTitle,
+        style = MaterialTheme.typography.titleLarge,
+        modifier = Modifier,
+        textAlign = TextAlign.Center
+    )
+
+    Text(
+        text = summaryMessage,
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(24.dp)
+            .padding(horizontal = 12.dp),
+        textAlign = TextAlign.Center
+    )
+
 }
