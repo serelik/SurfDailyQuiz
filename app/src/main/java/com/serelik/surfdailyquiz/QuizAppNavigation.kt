@@ -3,7 +3,10 @@ package com.serelik.surfdailyquiz
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import com.serelik.results.navigateToResults
+import com.serelik.results.results
 import com.serelik.surfdailyquiz.quizstartscreen.QUIZ_SCREEN_ROUTE
+import com.serelik.surfdailyquiz.quizstartscreen.navigateToQuizStart
 import com.serelik.surfdailyquiz.quizstartscreen.quiz
 import com.serelik.surfdailyquiz.ui.feature.history.history
 import com.serelik.surfdailyquiz.ui.feature.history.navigateToHistory
@@ -18,6 +21,10 @@ fun QuizAppNavigation(
     ) {
         quiz(onHistoryClick = navController::navigateToHistory)
 
-        history()
+        history(onHistoryItemClick = navController::navigateToResults)
+
+        results(onStartAgainClick = navController::navigateToQuizStart)
+
+
     }
 }

@@ -19,4 +19,6 @@ val answerBackgroundColor = Color(0xFFF3F3F3)
 
 val pink = Color(0xFFBCB7FF)
 
-val yellow = Color(0xFFFFB800 )
+val yellow = Color(0xFFFFB800)
+val red = Color(0xFFE70000)
+val green = Color(0xFF00AE3A)

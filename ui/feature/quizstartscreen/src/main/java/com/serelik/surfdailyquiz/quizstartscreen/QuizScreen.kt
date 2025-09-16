@@ -9,12 +9,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CheckCircle
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
@@ -33,8 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.serelik.core.theme.SurfDailyQuizTheme
 import com.serelik.quizstartscreen.R
+import com.serelik.surfdailyquiz.common.MainButton
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
+import com.serelik.core_n.R as CoreR
 
 @Composable
 fun QuizScreen(
@@ -80,7 +79,7 @@ fun QuizScreen(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = stringResource(R.string.question_number, questionUiModel.questionNumber),
+                text = stringResource(CoreR.string.question_number, questionUiModel.questionNumber),
                 textAlign = TextAlign.Center,
                 modifier = Modifier
                     .padding(horizontal = 24.dp)
@@ -105,26 +104,13 @@ fun QuizScreen(
                 )
             }
 
-
-            Button(
+            MainButton(
                 onClick = { onNextClick.invoke() },
-                enabled = questionUiModel.selectAnswer != null,
-                shape = ShapeDefaults.Medium,
-                colors = ButtonColors(
-                    containerColor = MaterialTheme.colorScheme.background,
-                    contentColor = MaterialTheme.colorScheme.primary,
-                    disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                    disabledContentColor = MaterialTheme.colorScheme.primary
+                isEnabled = questionUiModel.selectAnswer != null,
+                text = if (questionUiModel.questionNumber < 5) stringResource(R.string.forward) else stringResource(
+                    R.string.end_quiz
                 ),
-                modifier = Modifier
-                    .padding(top = 60.dp, bottom = 24.dp)
-                    .requiredSize(width = 260.dp, height = 50.dp)
-
-            ) {
-                Text(
-                    text = stringResource(R.string.forward),
-                )
-            }
+            )
 
         }
 

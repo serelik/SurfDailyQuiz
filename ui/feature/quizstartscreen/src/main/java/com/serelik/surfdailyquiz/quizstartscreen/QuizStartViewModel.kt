@@ -2,6 +2,7 @@ package com.serelik.surfdailyquiz.quizstartscreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.domain.models.QuestionItem
 import com.serelik.surfdailyquiz.domain.repository.QuizCacheRepository
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
@@ -82,8 +83,10 @@ class QuizStartViewModel @Inject constructor(
         }
 
         val result = QuizState.QuizFinishUiModel(
-            correctCount = correctAnswers,
-            allCount = quizItem.size
+            resultSummaryUiModel = ResultSummaryUiModel(
+                correctCount = correctAnswers,
+                allCount = quizItem.size
+            )
         )
         viewModelScope.launch {
             _quizStateFlow.emit(result)

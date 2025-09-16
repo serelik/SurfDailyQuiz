@@ -1,5 +1,6 @@
 package com.serelik.surfdailyquiz.quizstartscreen
 
+import com.serelik.surfdailyquiz.common.models.ResultSummaryUiModel
 import com.serelik.surfdailyquiz.quizstartscreen.models.QuestionUiModel
 
 sealed interface QuizState {
@@ -9,7 +10,6 @@ sealed interface QuizState {
     data class Quiz(val question: QuestionUiModel) : QuizState
 
     data class QuizFinishUiModel(
-        val correctCount: Int,
-        val allCount: Int
+        val resultSummaryUiModel: ResultSummaryUiModel
     ) : QuizState
 }

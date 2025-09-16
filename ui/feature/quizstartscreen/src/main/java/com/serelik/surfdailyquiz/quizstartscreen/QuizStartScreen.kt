@@ -11,13 +11,11 @@ import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ShapeDefaults
@@ -34,6 +32,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.serelik.quizstartscreen.R
+import com.serelik.surfdailyquiz.common.LoaderView
+import com.serelik.surfdailyquiz.common.MainButton
 
 @Composable
 fun StartScreen(
@@ -148,24 +148,11 @@ fun StartScreenUi(
             style = MaterialTheme.typography.titleLarge
         )
 
-        Button(
-            onClick = {
-                onStartClick.invoke()
-            },
-            shape = ShapeDefaults.Medium,
-            colors = ButtonColors(
-                containerColor = MaterialTheme.colorScheme.background,
-                contentColor = MaterialTheme.colorScheme.primary,
-                disabledContainerColor = MaterialTheme.colorScheme.tertiary,
-                disabledContentColor = MaterialTheme.colorScheme.primary
-            ),
-            modifier = Modifier
-                .padding(bottom = 24.dp)
-                .requiredSize(width = 260.dp, height = 50.dp)
-
-        ) {
-            Text(text = stringResource(R.string.quiz_start))
-        }
+        MainButton(
+            onClick = { onStartClick.invoke() },
+            text = stringResource(R.string.quiz_start),
+            paddingTop = 0.dp
+        )
     }
 }
 

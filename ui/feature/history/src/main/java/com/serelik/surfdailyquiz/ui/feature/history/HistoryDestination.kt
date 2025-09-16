@@ -7,9 +7,10 @@ import androidx.navigation.compose.composable
 const val HISTORY_SCREEN_ROUTE = "history"
 
 fun NavGraphBuilder.history(
+    onHistoryItemClick: (id: String) -> Unit
 ) {
     composable(HISTORY_SCREEN_ROUTE) {
-        HistoryListScreen()
+        HistoryListScreen(onHistoryItemClick)
     }
 }
 
